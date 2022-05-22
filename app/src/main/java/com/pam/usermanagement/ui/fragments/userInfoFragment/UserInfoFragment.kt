@@ -22,11 +22,4 @@ class UserInfoFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.user_info_fragment, container, false)
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UserInfoViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }

@@ -19,7 +19,7 @@ class UserRepository(private val database: UserDatabase) {
 
     suspend fun refreshUsers() {
         withContext(Dispatchers.IO) {
-            val users = RetrofitClient.getInstance().getUsers()
+            val users = RetrofitClient.getInstance().getPageUsers(50,46)
             database.userDao.insertAll(users.asUserDatabase())
         }
     }
