@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class UserRepository(private val database: UserDatabase) {
-    val videos: LiveData<List<User>> = Transformations.map(
+    val users: LiveData<List<User>> = Transformations.map(
         database.userDao.getUsers()
     ) {
         it.asUserModel()

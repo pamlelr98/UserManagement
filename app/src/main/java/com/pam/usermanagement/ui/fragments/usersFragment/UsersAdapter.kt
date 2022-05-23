@@ -1,10 +1,8 @@
-package com.pam.usermanagement.ui.fragments.userInfoFragment
+package com.pam.usermanagement.ui.fragments.usersFragment
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -46,7 +44,6 @@ class UserDiffCallBack : DiffUtil.ItemCallback<User>() {
     override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
         return oldItem.login == newItem.login
     }
-
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {

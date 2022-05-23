@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val userRepository = UserRepository(database)
 
         runBlocking {
-            userRepository.videos.observeForever {
+            userRepository.users.observeForever {
                 Log.d("getAPI", it.toString())
             }
         }
