@@ -16,7 +16,7 @@ class UserInfoFragment : Fragment() {
         val arguments = UserInfoFragmentArgs.fromBundle(requireArguments())
         ViewModelProvider(
             this,
-            UserInfoViewModel.Factory(arguments.login, application)
+            UserInfoViewModel.Factory(arguments.login, arguments.avatarUrl, application)
         )[UserInfoViewModel::class.java]
     }
 

@@ -13,7 +13,12 @@
         <action
             android:id="@+id/action_usersFragment_to_userInfoFragment"
             app:destination="@id/userInfoFragment"
-            app:popUpTo="@id/usersFragment" />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
     </fragment>
     <fragment
         android:id="@+id/userInfoFragment"
@@ -22,6 +27,9 @@
         tools:layout="@layout/user_info_fragment" >
         <argument
             android:name="login"
+            app:argType="string" />
+        <argument
+            android:name="avatar_url"
             app:argType="string" />
     </fragment>
 </navigation>

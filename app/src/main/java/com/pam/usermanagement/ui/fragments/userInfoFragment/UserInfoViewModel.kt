@@ -11,16 +11,25 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 import java.lang.IllegalArgumentException
 
-class UserInfoViewModel(private val login: String, val application: Application) : ViewModel() {
+class UserInfoViewModel(
+    private val login: String,
+    private val avatar_url: String,
+    val application: Application
+) : ViewModel() {
 
     private val _user = MutableLiveData<NetworkUserInfo>()
     val user: LiveData<NetworkUserInfo> get() = _user
+
+    var avatar: String = ""
 
     init {
         getUserInfoFromNetwork()
     }
 
     private fun getUserInfoFromNetwork() {
+
+        avatar = avatar_url
+
         viewModelScope.launch {
             try {
                 _user.value = RetrofitClient.getInstance().getUserInfo(login)
@@ -31,12 +40,16 @@ class UserInfoViewModel(private val login: String, val application: Application)
         }
     }
 
-    class Factory(private val login: String, private val application: Application) :
+    class Factory(
+        private val login: String,
+        private val avatar_url: String,
+        private val application: Application
+    ) :
         ViewModelProvider.Factory {
         @Suppress("unchecked_cast")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(UserInfoViewModel::class.java)) {
-                return UserInfoViewModel(login, application) as T
+                return UserInfoViewModel(login, avatar_url, application) as T
             }
             throw IllegalArgumentException("unable known modelView")
         }

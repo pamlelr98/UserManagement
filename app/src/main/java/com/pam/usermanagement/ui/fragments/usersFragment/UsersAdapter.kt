@@ -69,6 +69,6 @@ class UserDiffCallBack : DiffUtil.ItemCallback<User>() {
     }
 }
 
-class UserListener(val clickListener: (login: String) -> Unit) {
-    fun onClick(user: User) = clickListener(user.login)
+class UserListener(val clickListener: (login: String, avatar: String) -> Unit) {
+    fun onClick(user: User) = clickListener(user.login, user.avatar)
 }

@@ -13,7 +13,7 @@ fun bindImage(imageView: ImageView, imgUrl: String?) {
     imgUrl?.let {
         val imageUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imageView.context).load(imageUri).apply(
-            RequestOptions().placeholder(R.drawable.loading_animation)
+            RequestOptions()
                 .error(R.drawable.ic_broken_image)
         ).transition(DrawableTransitionOptions.withCrossFade()).into(imageView)
     }

@@ -1,7 +1,6 @@
 package com.pam.usermanagement.ui.fragments.usersFragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,9 +44,14 @@ class UsersFragment : Fragment() {
         binding = UsersFragmentBinding.inflate(inflater)
         binding.userViewModel = viewModel
 
-        userAdapter = UsersAdapter(UserListener { login ->
+        userAdapter = UsersAdapter(UserListener { login, avatar ->
             Toast.makeText(context, login, Toast.LENGTH_SHORT).show()
-            findNavController().navigate(UsersFragmentDirections.actionUsersFragmentToUserInfoFragment(login))
+            findNavController().navigate(
+                UsersFragmentDirections.actionUsersFragmentToUserInfoFragment(
+                    login,
+                    avatar
+                )
+            )
         })
         binding.recycleViewUsers.adapter = userAdapter
 
