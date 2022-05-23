@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">UserManagement</string>
     <string name="online">Đang trực tuyến</string>
+    <string name="avatar_image">avatar image</string>
+    <string name="summary_text">Hi! I am a recent graduate of Computer. Science at Arizona State University. My passion lies in marking a bold impact in communities and learning/growing</string>
 </resources>

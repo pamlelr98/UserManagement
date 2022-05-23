@@ -7,19 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.pam.usermanagement.R
+import com.pam.usermanagement.databinding.UserInfoFragmentBinding
 
 class UserInfoFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = UserInfoFragment()
+    private val viewModel: UserInfoViewModel by lazy {
+        val application = requireNotNull(this.activity).application
+        val arguments = UserInfoFragmentArgs.fromBundle(requireArguments())
+        ViewModelProvider(
+            this,
+            UserInfoViewModel.Factory(arguments.login, application)
+        )[UserInfoViewModel::class.java]
     }
-
-    private lateinit var viewModel: UserInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.user_info_fragment, container, false)
+        val binding = UserInfoFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        return binding.root
     }
 }

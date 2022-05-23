@@ -6,7 +6,6 @@ import com.pam.usermanagement.database.getDatabase
 import com.pam.usermanagement.repository.UserRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
-import java.lang.IllegalArgumentException
 
 class UsersViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -48,7 +47,7 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
             if (modelClass.isAssignableFrom(UsersViewModel::class.java)) {
                 return UsersViewModel(application) as T
             }
-            throw IllegalArgumentException("Unable to construct to viewmodel")
+            throw IllegalArgumentException("Unable to construct to viewModel")
         }
 
     }

@@ -1,5 +1,6 @@
 package com.pam.usermanagement.network
 
+import androidx.lifecycle.LiveData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -23,7 +24,7 @@ interface RetrofitApi {
     ): List<NetworkUser>
 
     @GET("users/{username}")
-    suspend fun getUserInfo(@Path("username") username: String): NetworkUser
+    suspend fun getUserInfo(@Path("username") username: String): NetworkUserInfo
 }
 
 private val moshi = Moshi.Builder()
