@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="padding">12dp</dimen>
-    <dimen name="radius">16dp</dimen>
+    <dimen name="radius">12dp</dimen>
+    <dimen name="titleSize">16sp</dimen>
 </resources>

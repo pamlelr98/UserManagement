@@ -14,6 +14,6 @@ interface UserDAO {
     @Query("SELECT * FROM databaseuser WHERE login=:login")
     suspend fun getUser(login: String): DatabaseUser
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(users: List<DatabaseUser>)
 }

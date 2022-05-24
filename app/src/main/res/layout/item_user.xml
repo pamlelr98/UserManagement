@@ -42,6 +42,7 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/baloo_bhaijaan"
                 android:textSize="18sp"
+                android:onClick="@{()->clickListener.onClickUrl(user)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/avatar_image"
                 app:layout_constraintBottom_toBottomOf="parent"

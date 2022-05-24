@@ -20,14 +20,13 @@ class UserRepository(private val database: UserDatabase) {
     }
 
     suspend fun refreshUsers() {
-        try {
-            withContext(Dispatchers.IO) {
+        withContext(Dispatchers.IO) {
+            try {
                 val users = RetrofitClient.getInstance().getUsers()
                 database.userDao.insertAll(users.asUserDatabase())
+            } catch (e: IOException) {
+                Log.d("refreshUsers", e.toString())
             }
-        } catch (e: IOException) {
-            Log.d("refreshUsers", e.toString())
         }
-
     }
 }

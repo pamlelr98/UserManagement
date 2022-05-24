@@ -7,6 +7,8 @@ import com.pam.usermanagement.repository.UserRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 
+enum class UsersApiStatus { LOADING, ERROR, DONE }
+
 class UsersViewModel(application: Application) : AndroidViewModel(application) {
 
     private val userRepository = UserRepository(getDatabase(application))
@@ -20,19 +22,25 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
     private val _isNetworkErrorShown = MutableLiveData<Boolean>(false)
     val isNetWorkErrorShown: LiveData<Boolean> get() = _isNetworkErrorShown
 
+    private val _status = MutableLiveData<UsersApiStatus>()
+    val status: LiveData<UsersApiStatus> get() = _status
+
     init {
         refreshDataFromRepository()
     }
 
-    private fun refreshDataFromRepository() {
+    fun refreshDataFromRepository() {
+        _status.value = UsersApiStatus.LOADING
         viewModelScope.launch {
             try {
                 userRepository.refreshUsers()
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
+                _status.value = UsersApiStatus.DONE
             } catch (networkError: IOException) {
                 if (users.value.isNullOrEmpty()) {
                     _eventNetworkError.value = true
+                    _status.value = UsersApiStatus.ERROR
                 }
             }
         }
@@ -49,6 +57,5 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
             }
             throw IllegalArgumentException("Unable to construct to viewModel")
         }
-
     }
 }
