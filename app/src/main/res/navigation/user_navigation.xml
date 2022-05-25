@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_navigation"
+    app:startDestination="@id/usersFragment">
+
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.pam.usermanagement.ui.fragments.usersFragment.UsersFragment"
+        android:label="users_fragment"
+        tools:layout="@layout/users_fragment" >
+        <action
+            android:id="@+id/action_usersFragment_to_userInfoFragment"
+            app:destination="@id/userInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="com.pam.usermanagement.ui.fragments.userInfoFragment.UserInfoFragment"
+        android:label="user_info_fragment"
+        tools:layout="@layout/user_info_fragment" >
+        <argument
+            android:name="login"
+            app:argType="string" />
+        <argument
+            android:name="avatar_url"
+            app:argType="string" />
+    </fragment>
+</navigation>
