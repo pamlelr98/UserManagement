@@ -1,9 +1,11 @@
 package com.pam.usermanagement.ui.fragments.usersFragment
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.pam.usermanagement.database.getDatabase
 import com.pam.usermanagement.repository.UserRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -34,22 +36,24 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 userRepository.refreshUsers()
+                delay(1000)
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
                 _status.value = UsersApiStatus.DONE
             } catch (networkError: IOException) {
-                if (users.value.isNullOrEmpty()) {
-                    _eventNetworkError.value = true
-                    _status.value = UsersApiStatus.ERROR
-                }
+                delay(1000)
+                _isNetworkErrorShown.value = true
+                _eventNetworkError.value = true
+                _status.value = UsersApiStatus.ERROR
             }
         }
     }
 
     fun onNetworkErrorShown() {
-        _isNetworkErrorShown.value = true
+        _isNetworkErrorShown.value = false
     }
 
+    @Suppress("UNCHECKED_CAST")
     class Factory(private val application: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(UsersViewModel::class.java)) {

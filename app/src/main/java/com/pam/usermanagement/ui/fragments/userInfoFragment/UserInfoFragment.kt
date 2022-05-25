@@ -59,9 +59,9 @@ class UserInfoFragment : Fragment() {
         binding.emailTextview.setOnClickListener {
             val packageManager = context?.packageManager ?: return@setOnClickListener
             val intent = Intent(Intent.ACTION_SENDTO)
-            intent.data = Uri.parse("mailto:")
-            intent.putExtra(Intent.EXTRA_EMAIL, (it as TextView).text.toString())
+            intent.data = Uri.parse("mailto: ${(it as TextView).text}")
             intent.putExtra(Intent.EXTRA_SUBJECT, "send email from my application");
+            //intent.type = "message/rfc822"
             if (intent.resolveActivity(packageManager) == null) {
                 startActivity(intent)
             }

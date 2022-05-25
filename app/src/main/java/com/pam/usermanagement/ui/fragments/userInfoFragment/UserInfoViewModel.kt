@@ -7,6 +7,7 @@ import com.pam.usermanagement.database.getDatabase
 import com.pam.usermanagement.network.NetworkUser
 import com.pam.usermanagement.network.NetworkUserInfo
 import com.pam.usermanagement.network.RetrofitClient
+import com.pam.usermanagement.network.TOKEN
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.lang.IllegalArgumentException
@@ -32,8 +33,7 @@ class UserInfoViewModel(
 
         viewModelScope.launch {
             try {
-                _user.value = RetrofitClient.getInstance().getUserInfo(login)
-                Log.d("UserInfoViewModel", user.toString())
+                _user.value = RetrofitClient.getInstance().getUserInfo(TOKEN, login)
             } catch (networkError: IOException) {
                 Log.d("UserInfoViewModel", networkError.toString())
             }

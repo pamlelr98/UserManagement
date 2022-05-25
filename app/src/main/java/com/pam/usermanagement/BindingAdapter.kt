@@ -8,9 +8,11 @@ import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import java.text.SimpleDateFormat
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -58,7 +60,7 @@ fun formattedString(textView: TextView, string: String?) {
 
 @BindingAdapter("textViewBio")
 fun textViewBio(textView: TextView, string: String?) {
-    if (string.isNullOrEmpty()) {
+    if (string.isNullOrBlank()) {
         textView.visibility = View.GONE
     } else {
         textView.visibility = View.VISIBLE
@@ -68,10 +70,31 @@ fun textViewBio(textView: TextView, string: String?) {
 
 @BindingAdapter("textViewEmail")
 fun textViewEmail(textView: TextView, string: String?) {
-    if (string.isNullOrEmpty()) {
+    if (string.isNullOrBlank()) {
         textView.visibility = View.GONE
     } else {
         textView.visibility = View.VISIBLE
         textView.text = string
+    }
+}
+
+@BindingAdapter("imageUserUrl")
+fun bindImageUrl(imageView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
+        val imageUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        val radius = imageView.resources.getDimensionPixelSize(R.dimen.radius)
+        val multi = MultiTransformation(
+            CenterCrop(),
+            RoundedCornersTransformation(radius, 0, RoundedCornersTransformation.CornerType.TOP)
+        )
+        Glide.with(imageView.context)
+            .load(imageUri)
+            .apply(RequestOptions.bitmapTransform(multi))
+            .apply(
+                RequestOptions()
+                    .error(R.drawable.ic_broken_image)
+            )
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(imageView)
     }
 }
