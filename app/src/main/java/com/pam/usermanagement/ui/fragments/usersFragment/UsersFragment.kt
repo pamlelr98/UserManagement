@@ -1,18 +1,17 @@
 package com.pam.usermanagement.ui.fragments.usersFragment
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,11 +20,14 @@ import com.google.android.material.snackbar.Snackbar
 import com.pam.usermanagement.R
 import com.pam.usermanagement.databinding.UsersFragmentBinding
 import com.pam.usermanagement.ui.LoadingDialog
+import com.pam.usermanagement.ui.activities.IOnBackPressed
 
-class UsersFragment : Fragment() {
+class UsersFragment : Fragment(), IOnBackPressed {
 
-    private var doubleBackToExitPressedOnce = false
     private lateinit var binding: UsersFragmentBinding
+    private lateinit var loadingDialog: LoadingDialog
+    private var doubleBackToExitPressedOnce: Boolean = false
+
     private val viewModel: UsersViewModel by lazy {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreate()"
@@ -53,7 +55,16 @@ class UsersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = UsersFragmentBinding.inflate(inflater)
+        init()
+        return binding.root
+    }
+
+
+    @SuppressLint("QueryPermissionsNeeded")
+    private fun init() {
         binding.userViewModel = viewModel
+
+        loadingDialog = LoadingDialog().newInstance()
 
         userAdapter = UsersAdapter(UserListener(clickListener = { login, avatar ->
             findNavController().navigate(
@@ -70,9 +81,41 @@ class UsersFragment : Fragment() {
                 startActivity(intent)
             }
         }))
+
         binding.recycleViewUsers.adapter = userAdapter
 
-        viewModel.eventNetWorkError.observe(viewLifecycleOwner, Observer {
+        setListeners()
+        observe()
+        setHasOptionsMenu(true)
+    }
+
+    private fun setListeners() {
+        binding.containerSwipe.setOnRefreshListener {
+            viewModel.eventNetWorkError.value?.let {
+                if (!it) {
+                    viewModel.refreshDataFromRepository()
+                }
+            }
+            binding.containerSwipe.isRefreshing = false
+        }
+    }
+
+    private fun observe() {
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            Log.d(
+                "user",
+                "status  $it"
+            )
+            when (it) {
+                UsersApiStatus.DONE -> dismissDialog()
+                UsersApiStatus.LOADING -> showDialog()
+                else -> {
+                    dismissDialog()
+                }
+            }
+        })
+
+        viewModel.isNetWorkErrorShown.observe(viewLifecycleOwner, Observer {
             if (it) {
                 Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
@@ -82,26 +125,36 @@ class UsersFragment : Fragment() {
                 viewModel.onNetworkErrorShown()
             }
         })
-        init()
-        setHasOptionsMenu(true)
-        return binding.root
     }
 
-    private var isLargeLayout: Boolean = false
-
-    private fun init() {
-        isLargeLayout = resources.getBoolean(R.bool.large_layout)
-        setListeners()
-    }
-
-    private fun setListeners() {
-        binding.containerSwipe.setOnRefreshListener {
-            viewModel.refreshDataFromRepository()
-            LoadingDialog().show(
-                childFragmentManager, LoadingDialog.TAG)
-
-            binding.containerSwipe.isRefreshing = false
+    private fun showDialog() {
+        val ft: FragmentTransaction = this.parentFragmentManager.beginTransaction()
+        val prev = this.parentFragmentManager.findFragmentByTag(LoadingDialog.TAG)
+        if (prev != null) {
+            ft.remove(prev)
         }
+        ft.addToBackStack(null)
+        loadingDialog.show(ft, LoadingDialog.TAG)
+    }
+
+    private fun dismissDialog() {
+        val prev = this.parentFragmentManager.findFragmentByTag(LoadingDialog.TAG)
+        if (prev != null) {
+            loadingDialog.dismiss()
+        }
+    }
+
+    override fun onBackPressed(): Boolean {
+        if (doubleBackToExitPressedOnce) {
+            return false
+        }
+        doubleBackToExitPressedOnce = true
+        Toast.makeText(context, getString(R.string.exit_msg), Toast.LENGTH_SHORT)
+            .show()
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            doubleBackToExitPressedOnce = false
+        }, 2000)
+        return true
     }
 
 
