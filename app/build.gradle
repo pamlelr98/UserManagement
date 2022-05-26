@@ -23,6 +23,7 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+
     }
 
     packagingOptions {
@@ -53,7 +54,7 @@ dependencies {
     def moshi_version = "1.9.3"
     def retrofit_version = "2.9.0"
     def coroutines_version = "1.5.2"
-    def roomVersion = "2.4.2"
+    def roomVersion = "2.5.0-alpha01"
     def glide_version = "4.13.0"
     def glide_transformations_version = "4.3.0"
     def nav_version = "2.3.0"

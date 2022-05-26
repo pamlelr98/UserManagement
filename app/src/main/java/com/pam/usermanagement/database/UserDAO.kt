@@ -8,10 +8,10 @@ import androidx.room.Query
 
 @Dao
 interface UserDAO {
-    @Query("SELECT * FROM databaseuser")
+    @Query("SELECT * FROM `DatabaseUser`")
     fun getUsers(): LiveData<List<DatabaseUser>>
 
-    @Query("SELECT * FROM databaseuser WHERE login=:login")
+    @Query("SELECT * FROM `DatabaseUser` WHERE login=:login")
     suspend fun getUser(login: String): DatabaseUser
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
