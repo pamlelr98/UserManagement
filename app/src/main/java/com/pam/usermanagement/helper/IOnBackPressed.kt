@@ -1,4 +1,4 @@
-package com.pam.usermanagement.ui.activities
+package com.pam.usermanagement.helper
 
 interface IOnBackPressed {
     fun onBackPressed(): Boolean

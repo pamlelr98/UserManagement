@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.pam.usermanagement.ui.fragments.userInfoFragment.UserInfoViewModel" />
+            type="com.pam.usermanagement.viewmodels.UserInfoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,7 +71,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".ui.fragments.userInfoFragment.UserInfoFragment">
+                tools:context=".ui.fragments.UserInfoFragment">
 
                 <ImageView
                     android:id="@+id/avatar_imageview"

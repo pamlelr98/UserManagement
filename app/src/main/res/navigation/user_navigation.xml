@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/usersFragment"
-        android:name="com.pam.usermanagement.ui.fragments.usersFragment.UsersFragment"
+        android:name="com.pam.usermanagement.ui.fragments.UsersFragment"
         android:label="users_fragment"
         tools:layout="@layout/users_fragment" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/userInfoFragment"
-        android:name="com.pam.usermanagement.ui.fragments.userInfoFragment.UserInfoFragment"
+        android:name="com.pam.usermanagement.ui.fragments.UserInfoFragment"
         android:label="user_info_fragment"
         tools:layout="@layout/user_info_fragment" >
         <argument

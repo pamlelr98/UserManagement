@@ -1,7 +1,6 @@
-package com.pam.usermanagement.ui.fragments.usersFragment
+package com.pam.usermanagement.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.pam.usermanagement.database.getDatabase
 import com.pam.usermanagement.repository.UserRepository
@@ -17,11 +16,11 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
 
     val users = userRepository.users
 
-    private val _eventNetworkError = MutableLiveData<Boolean>(false)
+    private val _eventNetworkError = MutableLiveData(false)
 
     val eventNetWorkError: LiveData<Boolean> get() = _eventNetworkError
 
-    private val _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+    private val _isNetworkErrorShown = MutableLiveData(false)
     val isNetWorkErrorShown: LiveData<Boolean> get() = _isNetworkErrorShown
 
     private val _status = MutableLiveData<UsersApiStatus>()

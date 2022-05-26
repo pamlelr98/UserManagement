@@ -1,13 +1,10 @@
 package com.pam.usermanagement.ui.activities
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.pam.usermanagement.R
-import com.pam.usermanagement.ui.fragments.usersFragment.UsersFragment
+import com.pam.usermanagement.ui.fragments.UsersFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,13 +15,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         try {
-            var handled = false // 1
+            var handled = false
             supportFragmentManager.fragments.forEach { fragment ->
                 if (fragment is NavHostFragment) {
-                    fragment.childFragmentManager.fragments.forEach { childFragment -> //2
-                        if (childFragment is UsersFragment) { // 3
-                            handled = childFragment.onBackPressed() // 4
-                            if (handled) { //5
+                    fragment.childFragmentManager.fragments.forEach { childFragment ->
+                        if (childFragment is UsersFragment) {
+                            handled = childFragment.onBackPressed()
+                            if (handled) {
                                 return
                             }
                         }
@@ -32,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            if (!handled) { //6
+            if (!handled) {
                 super.onBackPressed()
             }
         } catch (e: Exception) {

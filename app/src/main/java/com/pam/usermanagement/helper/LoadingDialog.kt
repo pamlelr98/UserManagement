@@ -1,5 +1,6 @@
-package com.pam.usermanagement.ui
+package com.pam.usermanagement.helper
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
@@ -29,10 +30,11 @@ class LoadingDialog : DialogFragment() {
         return frag
     }
 
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
-            val inflater = requireActivity().layoutInflater;
+            val inflater = requireActivity().layoutInflater
             builder.setView(inflater.inflate(R.layout.layout_loading_dialog, null))
             isCancelable=false
             builder.create()

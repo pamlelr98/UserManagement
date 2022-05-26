@@ -1,4 +1,4 @@
-package com.pam.usermanagement.ui.fragments.userInfoFragment
+package com.pam.usermanagement.ui.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.pam.usermanagement.R
 import com.pam.usermanagement.databinding.UserInfoFragmentBinding
+import com.pam.usermanagement.viewmodels.UserInfoViewModel
 
 class UserInfoFragment : Fragment() {
 
@@ -30,7 +31,7 @@ class UserInfoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = UserInfoFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -60,8 +61,7 @@ class UserInfoFragment : Fragment() {
             val packageManager = context?.packageManager ?: return@setOnClickListener
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto: ${(it as TextView).text}")
-            intent.putExtra(Intent.EXTRA_SUBJECT, "send email from my application");
-            //intent.type = "message/rfc822"
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject))
             if (intent.resolveActivity(packageManager) == null) {
                 startActivity(intent)
             }

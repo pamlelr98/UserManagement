@@ -1,4 +1,4 @@
-package com.pam.usermanagement.ui.fragments.usersFragment
+package com.pam.usermanagement.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -53,5 +53,5 @@ class UserListener(
     val clickUrl: (url: String) -> Unit
 ) {
     fun onClick(user: User) = clickListener(user.login, user.avatar)
-    fun onClickUrl(user: User) = clickUrl(user.url)
+    fun onClickUrl(user: User) = clickUrl(user.html_url)
 }

@@ -1,10 +1,8 @@
-package com.pam.usermanagement.ui.fragments.userInfoFragment
+package com.pam.usermanagement.viewmodels
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.pam.usermanagement.database.getDatabase
-import com.pam.usermanagement.network.NetworkUser
 import com.pam.usermanagement.network.NetworkUserInfo
 import com.pam.usermanagement.network.RetrofitClient
 import com.pam.usermanagement.network.TOKEN

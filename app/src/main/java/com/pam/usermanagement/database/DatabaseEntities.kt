@@ -1,6 +1,5 @@
 package com.pam.usermanagement.database
 
-import androidx.annotation.ColorInt
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -25,7 +24,6 @@ data class DatabaseUser constructor(
     val starred_url: String,
     val subscriptions_url: String,
     val type: String,
-    val url: String
 )
 
 fun List<DatabaseUser>.asUserModel(): List<User> {
@@ -34,21 +32,7 @@ fun List<DatabaseUser>.asUserModel(): List<User> {
             id = it.id,
             avatar = it.avatar,
             login = it.login,
-            events_url = it.events_url,
-            followers_url = it.followers_url,
-            following_url = it.following_url,
-            gists_url = it.gists_url,
-            gravatar_id = it.gravatar_id,
             html_url = it.html_url,
-            node_id = it.node_id,
-            organizations_url = it.organizations_url,
-            received_events_url = it.received_events_url,
-            repos_url = it.repos_url,
-            site_admin = it.site_admin,
-            starred_url = it.starred_url,
-            subscriptions_url = it.subscriptions_url,
-            type = it.type,
-            url = it.url
         )
     }
 }

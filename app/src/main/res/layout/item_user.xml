@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.pam.usermanagement.ui.fragments.usersFragment.UserListener" />
+            type="com.pam.usermanagement.adapters.UserListener" />
     </data>
 
     <androidx.cardview.widget.CardView

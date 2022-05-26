@@ -7,13 +7,13 @@
 
         <variable
             name="userViewModel"
-            type="com.pam.usermanagement.ui.fragments.usersFragment.UsersViewModel" />
+            type="com.pam.usermanagement.viewmodels.UsersViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.usersFragment.UsersFragment">
+        tools:context=".ui.fragments.UsersFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/header_layout"

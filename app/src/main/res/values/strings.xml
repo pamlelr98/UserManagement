@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">UserManagement</string>
+    <string name="app_name">User Management</string>
     <string name="online">Đang trực tuyến</string>
     <string name="offline">Đang ngoại tuyến</string>
     <string name="avatar_image">avatar image</string>
     <string name="summary_text">Hi! I am a recent graduate of Computer. Science at Arizona State University. My passion lies in marking a bold impact in communities and learning/growing</string>
     <string name="swifters">Swifters</string>
     <string name="exit_msg">Quay lại 2 lần để thoát ứng dụng</string>
+    <string name="subject">"send email from my application"</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.pam.usermanagement.ui.fragments.usersFragment
+package com.pam.usermanagement.ui.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -18,9 +18,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.pam.usermanagement.R
+import com.pam.usermanagement.adapters.UserListener
+import com.pam.usermanagement.adapters.UsersAdapter
 import com.pam.usermanagement.databinding.UsersFragmentBinding
-import com.pam.usermanagement.ui.LoadingDialog
-import com.pam.usermanagement.ui.activities.IOnBackPressed
+import com.pam.usermanagement.helper.LoadingDialog
+import com.pam.usermanagement.helper.IOnBackPressed
+import com.pam.usermanagement.viewmodels.UsersApiStatus
+import com.pam.usermanagement.viewmodels.UsersViewModel
 
 class UsersFragment : Fragment(), IOnBackPressed {
 
