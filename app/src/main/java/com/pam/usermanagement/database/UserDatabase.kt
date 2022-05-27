@@ -17,7 +17,7 @@ fun getDatabase(context: Context): UserDatabase {
     if (!::INSTANCE.isInitialized) {
         INSTANCE = Room.databaseBuilder(
             context.applicationContext,
-            UserDatabase::class.java, "databaseuser"
+            UserDatabase::class.java, "DatabaseUser"
         ).build()
     }
     return INSTANCE
