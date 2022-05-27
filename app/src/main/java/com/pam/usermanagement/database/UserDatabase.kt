@@ -14,7 +14,6 @@ import androidx.room.migration.AutoMigrationSpec
         spec = DeleteColumnAutoMigration::class
     )]
 )
-//, AutoMigration(from = 2, to = 3, spec = RenameTableAutoMigration::class)
 
 abstract class UserDatabase : RoomDatabase() {
     abstract val userDao: UserDAO
@@ -35,9 +34,6 @@ abstract class UserDatabase : RoomDatabase() {
 @DeleteColumn(tableName = "DatabaseUser", columnName = "type")
 @DeleteColumn(tableName = "DatabaseUser", columnName = "url")
 class DeleteColumnAutoMigration : AutoMigrationSpec
-
-//@RenameTable(fromTableName = "DatabaseUser", toTableName = "Users")
-//class RenameTableAutoMigration : AutoMigrationSpec
 
 private lateinit var INSTANCE: UserDatabase
 
