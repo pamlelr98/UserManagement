@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.pam.usermanagement.models.User
 
-@Entity
+@Entity(tableName = "Users")
 data class DatabaseUser constructor(
     val id: Int,
     @PrimaryKey val login: String,

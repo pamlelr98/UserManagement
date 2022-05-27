@@ -10,7 +10,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.github.com"
-const val TOKEN = "bearer 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"
 
 interface RetrofitApi {
     @GET("users")

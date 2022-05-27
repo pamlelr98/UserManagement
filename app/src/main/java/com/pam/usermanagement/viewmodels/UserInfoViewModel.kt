@@ -3,12 +3,11 @@ package com.pam.usermanagement.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.pam.usermanagement.helper.TOKEN
 import com.pam.usermanagement.network.NetworkUserInfo
 import com.pam.usermanagement.network.RetrofitClient
-import com.pam.usermanagement.network.TOKEN
 import kotlinx.coroutines.launch
 import java.io.IOException
-import java.lang.IllegalArgumentException
 
 class UserInfoViewModel(
     private val login: String,
