@@ -1,5 +1,6 @@
 package com.pam.usermanagement.network
 
+import com.pam.usermanagement.helper.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -8,8 +9,6 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
-
-private const val BASE_URL = "https://api.github.com"
 
 interface RetrofitApi {
     @GET("users")
