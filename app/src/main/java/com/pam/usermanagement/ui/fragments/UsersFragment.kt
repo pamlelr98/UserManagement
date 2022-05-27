@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +20,8 @@ import com.pam.usermanagement.R
 import com.pam.usermanagement.adapters.UserListener
 import com.pam.usermanagement.adapters.UsersAdapter
 import com.pam.usermanagement.databinding.UsersFragmentBinding
-import com.pam.usermanagement.helper.LoadingDialog
 import com.pam.usermanagement.helper.IOnBackPressed
+import com.pam.usermanagement.helper.LoadingDialog
 import com.pam.usermanagement.viewmodels.UsersApiStatus
 import com.pam.usermanagement.viewmodels.UsersViewModel
 
@@ -106,10 +105,6 @@ class UsersFragment : Fragment(), IOnBackPressed {
 
     private fun observe() {
         viewModel.status.observe(viewLifecycleOwner, Observer {
-            Log.d(
-                "user",
-                "status  $it"
-            )
             when (it) {
                 UsersApiStatus.DONE -> dismissDialog()
                 UsersApiStatus.LOADING -> showDialog()
@@ -160,6 +155,4 @@ class UsersFragment : Fragment(), IOnBackPressed {
         }, 2000)
         return true
     }
-
-
 }
