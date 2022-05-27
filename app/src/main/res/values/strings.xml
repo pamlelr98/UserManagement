@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UserManagement</string>
+    <string name="app_name">User Management</string>
     <string name="online">Đang trực tuyến</string>
     <string name="offline">Đang ngoại tuyến</string>
     <string name="avatar_image">avatar image</string>

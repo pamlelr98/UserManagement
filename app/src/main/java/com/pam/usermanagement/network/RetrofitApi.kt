@@ -1,6 +1,7 @@
 package com.pam.usermanagement.network
 
 import androidx.lifecycle.LiveData
+import com.pam.usermanagement.helper.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -12,8 +13,6 @@ import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-private const val BASE_URL = "https://api.github.com"
-const val TOKEN = "bearer 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"
 
 interface RetrofitApi {
     @GET("users")
