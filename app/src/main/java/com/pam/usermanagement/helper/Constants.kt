@@ -11,4 +11,5 @@ const val BASE_URL = "https://api.github.com"
 val cipher: String =
     String(Base64.getDecoder().decode("Z2hwX1AzalBJaURSRks2VHVWNGZlaDVoM1c5MlNJSVJhSTBRTVU0Qg=="))
 
+@RequiresApi(Build.VERSION_CODES.O)
 var TOKEN = "bearer $cipher"

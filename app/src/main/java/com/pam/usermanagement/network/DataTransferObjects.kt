@@ -24,7 +24,15 @@ data class NetworkUser(
     val starred_url: String,
     val subscriptions_url: String,
     val type: String,
-    val url: String
+    val url: String,
+
+    val name: String?,
+    val location: String?,
+    val blog: String?,
+    val email: String?,
+    val bio: String?,
+    val created_at: String?,
+    val followers: Int?,
 )
 
 @JsonClass(generateAdapter = true)
@@ -70,6 +78,38 @@ fun List<NetworkUser>.asUserDatabase(): List<DatabaseUser> {
             avatar = it.avatar_url,
             login = it.login,
             html_url = it.html_url,
+
+            bio = it.bio,
+            name = it.name,
+            created_at = it.created_at,
+            blog = it.blog,
+            email = it.email,
+            followers = it.followers,
+            location = it.location
         )
     }
 }
+
+fun NetworkUserInfo.asUserInfo(): UserInfo {
+    return let {
+        UserInfo(
+            bio = it.bio,
+            name = it.name,
+            created_at = it.created_at,
+            blog = it.blog,
+            email = it.email,
+            followers = it.followers,
+            location = it.location
+        )
+    }
+}
+
+data class UserInfo(
+    val name: String?,
+    val bio: String?,
+    val blog: String,
+    val created_at: String,
+    val followers: Int,
+    val email: String?,
+    val location: String?,
+)

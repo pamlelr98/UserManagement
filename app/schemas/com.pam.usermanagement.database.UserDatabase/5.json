@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 3,
+    "version": 5,
     "identityHash": "9c6363837a169a88a9125f2bd94a8d24",
     "entities": [
       {
         "tableName": "Users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `login` TEXT NOT NULL, `avatar_url` TEXT NOT NULL, `html_url` TEXT NOT NULL, `name` TEXT, `location` TEXT, `blog` TEXT, `email` TEXT, `bio` TEXT, `created_at` TEXT, `followers` INTEGER, PRIMARY KEY(`login`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `login` TEXT NOT NULL, `avatar_url` TEXT NOT NULL, `html_url` TEXT NOT NULL, `followers` INTEGER, `name` TEXT, `location` TEXT, `blog` TEXT, `email` TEXT, `bio` TEXT, `created_at` TEXT, PRIMARY KEY(`login`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -31,6 +31,12 @@
             "columnName": "html_url",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "followers",
+            "columnName": "followers",
+            "affinity": "INTEGER",
+            "notNull": false
           },
           {
             "fieldPath": "name",
@@ -66,12 +72,6 @@
             "fieldPath": "created_at",
             "columnName": "created_at",
             "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "followers",
-            "columnName": "followers",
-            "affinity": "INTEGER",
             "notNull": false
           }
         ],

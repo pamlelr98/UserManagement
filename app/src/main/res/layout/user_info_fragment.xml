@@ -73,19 +73,40 @@
                 android:layout_height="match_parent"
                 tools:context=".ui.fragments.UserInfoFragment">
 
-                <ImageView
-                    android:id="@+id/avatar_imageview"
-                    imageUrl="@{viewModel.avatar}"
+                <FrameLayout
+                    android:id="@+id/container_imageview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    app:layout_constraintVertical_chainStyle="packed"
-                    android:contentDescription="@string/avatar_image"
                     app:layout_constraintBottom_toTopOf="@id/group_content_github"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/avatar_imageview"
+                        imageUrl="@{viewModel.avatar}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/avatar_image"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:src="@drawable/avatar" />
+
+                    <TextView
+                        android:id="@+id/location_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Hồ chí Minh"
+                        textViewEmail="@{viewModel.user.location}"
+                        android:background="#97454242"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="12dp"
+                        android:textColor="@color/white"/>
+
+                </FrameLayout>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/group_content_github"
@@ -95,7 +116,7 @@
                     app:layout_constraintBottom_toTopOf="@id/summary_textview"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/avatar_imageview">
+                    app:layout_constraintTop_toBottomOf="@id/container_imageview">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -171,12 +192,12 @@
 
                 <TextView
                     android:id="@+id/blog_textview"
+                    textViewEmail="@{viewModel.user.blog}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:drawablePadding="8dp"
                     android:gravity="center"
-                    android:layout_marginTop="16dp"
-                    textViewEmail="@{viewModel.user.blog}"
                     app:drawableLeftCompat="@drawable/ic_round_web_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
