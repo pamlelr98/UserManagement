@@ -1,0 +1,18 @@
+name: Actions Probe
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    name: Ubuntu Probe
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm runner starts
+        run: |
+          echo "runner-started"
+          uname -a
